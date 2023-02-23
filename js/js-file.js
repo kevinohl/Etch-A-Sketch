@@ -6,16 +6,26 @@ gridWidth = 960;
 const squaresPerRow = 20;
 if (squaresPerRow > 100) squaresPerRow = 100;
 
-for (let i=0; i<squaresPerRow; i++) {
+for (let i = 0; i < squaresPerRow; i++) {
     const rowContainer = document.createElement("div");
     rowContainer.classList.add("row-container");
-    console.log("created rowContainer");
-    for (let i=0; i<squaresPerRow; i++) {
+    for (let i = 0; i < squaresPerRow; i++) {
         const gridSquare = document.createElement("div");
         gridSquare.classList.add("grid-square");
-        gridSquare.setAttribute('style', `width: ${gridWidth/squaresPerRow}px; height: ${gridWidth/squaresPerRow}px;`)
+        gridSquare.style.width = `${gridWidth / squaresPerRow}px`;
+        gridSquare.style.height = `${gridWidth / squaresPerRow}px`;
+        gridSquare.addEventListener('mousemove', function (e) {
+            console.log(this);
+            this.style["background-color"] = "black";
+            e.stopPropagation();
+        })
         rowContainer.appendChild(gridSquare);
-        console.log("appended grid square");
     }
     container.appendChild(rowContainer);
+}
+
+function colorSquare() {
+    console.log(this);
+
+
 }

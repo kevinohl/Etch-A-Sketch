@@ -8,6 +8,7 @@ body {
     display: flex;
     justify-content: center;
     width: 960px;
+    height: 960px;
 }
 
 .row-container {
@@ -19,7 +20,7 @@ body {
 
 .grid-square {
     background-color: pink;
-    padding: 5px;
+
     flex: auto;
     /* height: 25%;
     width: calc(50%); */
