@@ -25,7 +25,7 @@ function setLayout(squaresPerRow) {
     }
 }
 
-function colorSquare(e) {
+function colorSquare() {
     currentColor = this.style["background-color"];
     rgbValues = currentColor.substring(4, currentColor.length-1).split(",");
     newRgbValues = [];
