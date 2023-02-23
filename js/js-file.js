@@ -1,31 +1,45 @@
 //alert("hewwo");
 
 const container = document.querySelector("#grid-container");
-console.log(container);
-gridWidth = 960;
-const squaresPerRow = 20;
-if (squaresPerRow > 100) squaresPerRow = 100;
+const layoutButton = document.querySelector("#layout-btn");
+const gridWidth = 960;
+const startingSquaresPerRow = 20;
 
-for (let i = 0; i < squaresPerRow; i++) {
-    const rowContainer = document.createElement("div");
-    rowContainer.classList.add("row-container");
+function setLayout(squaresPerRow) {
+    // erase existing grid
+    container.innerHTML = "";
+    if (squaresPerRow > 100) squaresPerRow = 100;
     for (let i = 0; i < squaresPerRow; i++) {
-        const gridSquare = document.createElement("div");
-        gridSquare.classList.add("grid-square");
-        gridSquare.style.width = `${gridWidth / squaresPerRow}px`;
-        gridSquare.style.height = `${gridWidth / squaresPerRow}px`;
-        gridSquare.addEventListener('mousemove', function (e) {
-            console.log(this);
-            this.style["background-color"] = "black";
-            e.stopPropagation();
-        })
-        rowContainer.appendChild(gridSquare);
+        const rowContainer = document.createElement("div");
+        rowContainer.classList.add("row-container");
+        for (let i = 0; i < squaresPerRow; i++) {
+            const gridSquare = document.createElement("div");
+            gridSquare.classList.add("grid-square");
+            gridSquare.style.width = `${gridWidth / squaresPerRow}px`;
+            gridSquare.style.height = `${gridWidth / squaresPerRow}px`;
+            gridSquare.style["background-color"] = "rgb(255,255,255)";
+            gridSquare.addEventListener("mouseover", colorSquare);
+            rowContainer.appendChild(gridSquare);
+        }
+        container.appendChild(rowContainer);
     }
-    container.appendChild(rowContainer);
 }
 
-function colorSquare() {
-    console.log(this);
-
-
+function colorSquare(e) {
+    currentColor = this.style["background-color"];
+    rgbValues = currentColor.substring(4, currentColor.length-1).split(",");
+    newRgbValues = [];
+    for (colorValue of rgbValues) {
+        if (colorValue - 25 < 0) newRgbValues.push(0);
+        else newRgbValues.push(colorValue - 25);
+    }
+    newColor = `rgb(${newRgbValues.join()})`;
+    this.style["background-color"] = newColor;
 }
+
+layoutButton.addEventListener("click", function () {
+    setLayout(prompt("How many squares per row?"));
+});
+
+
+setLayout(startingSquaresPerRow);

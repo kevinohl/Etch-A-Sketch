@@ -1,7 +1,13 @@
-body {
+#etch-a-sketch {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+#layout-btn {
+    justify-self: center;
+    margin: 10px;
 }
 
 #grid-container {
@@ -12,16 +18,8 @@ body {
 }
 
 .row-container {
-    background-color: brown;
+    /* background-color: brown; */
     display: flex;
     flex-direction: column;
     flex: auto;
-}
-
-.grid-square {
-    background-color: pink;
-
-    flex: auto;
-    /* height: 25%;
-    width: calc(50%); */
 }
